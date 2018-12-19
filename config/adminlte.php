@@ -137,6 +137,7 @@ return [
             'text'       => 'All',
             'icon_color' => 'aqua',
             'url'  => 'articles',
+            'active' => ['articles']
         ],
         [
             'text'       => 'Create',

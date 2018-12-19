@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
@@ -14,8 +15,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        return view('admin/users', compact('user'));
+        return view('admin/users');
+    }
+
+    /**
+     * Request ajax data for
+     * Datatables
+     */
+    public function getUsers()
+    {
+        return Datatables::of(User::query())
+        ->editColumn('updated_at', function(User $user) {
+                    return $user->updated_at->diffForHumans();
+                })
+        ->make(true);
     }
 
     /**

@@ -2,22 +2,35 @@
 
 @section('content')
 	<div class="box-body">
-		<table class="table table-striped table-hover" id="siswa-table">
+		<table class="table table-striped table-hover" id="myTable">
 			<thead>
-				<th>0</th>
-				<th>Name</th>
-				<th>Email</th>
-			</thead>
-			<tbody>
-				<?php $no = 1;?>
-				@foreach ($user as $key => $value)
-					<tr>
-						<th>{{ $no++ }}</th>
-						<th>{{ $value->name }}</th>
-						<th>{{ $value->email }}</th>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
+	            <tr>
+	                <th>Id</th>
+	                <th>Name</th>
+	                <th>Email</th>
+	                <th>Created At</th>
+	                <th>Updated At</th>
+	            </tr>
+	        </thead>
+	    </table>
 	</div> 
+@endsection
+
+@section('js')
+    <script>
+    	$(function() {
+	    $('#myTable').DataTable({
+	        processing: true,
+	        serverSide: true,
+	        ajax: '{!! route('getusers') !!}',
+	        columns: [
+	            { data: 'id', name: 'id' },
+	            { data: 'name', name: 'name' },
+	            { data: 'email', name: 'email' },
+	            { data: 'created_at', name: 'created_at' },
+	            { data: 'updated_at', name: 'updated_at' }
+	        ]
+	    });
+	});
+    </script>
 @endsection
