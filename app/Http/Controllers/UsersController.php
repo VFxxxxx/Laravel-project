@@ -4,32 +4,21 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
+use App\DataTables\UsersDataTable;
+use App\DataTables\UsersDataTablesEditor;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UsersDataTable $dataTable)
     {
-        return view('admin/users');
+        return $dataTable->render('admin.users');
     }
 
-    /**
-     * Request ajax data for
-     * Datatables
-     */
-    public function getUsers()
-    {
-        return Datatables::of(User::query())
-        ->editColumn('updated_at', function(User $user) {
-                    return $user->updated_at->diffForHumans();
-                })
-        ->make(true);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -47,9 +36,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersDataTablesEditor $editor)
     {
-        //
+        return $editor->process(request());
     }
 
     /**
