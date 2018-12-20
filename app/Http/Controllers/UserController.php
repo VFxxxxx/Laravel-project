@@ -26,8 +26,15 @@ class UserController extends Controller
     {
         return Datatables::of(User::query())
         ->editColumn('updated_at', function(User $user) {
-                    return $user->updated_at->diffForHumans();
-                })
+                return $user->updated_at->diffForHumans();
+            })
+        ->addColumn('intro', function(User $user) {
+                return '
+                <a href="users/'.$user->id.'/edit" type="button" class="btn btn-primary">edit</a>
+                <a href="users/'.$user->id.'/delete" type="button" class="btn btn-danger">delete</a>
+                ';
+            })
+        ->rawColumns(['intro', 'action'])
         ->make(true);
     }
 
@@ -38,7 +45,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user_create');
     }
 
     /**

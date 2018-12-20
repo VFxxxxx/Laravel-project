@@ -115,10 +115,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Home',
+            'url'         => 'admin/home',
             'icon'        => 'file',
-            'label'       => 4,
+            'label'       => 5,
             'label_color' => 'success',
         ],
         'ACCOUNT SETTINGS',
@@ -132,23 +132,18 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
-        'ARTICLES',
-        [
-            'text'       => 'All',
-            'icon_color' => 'aqua',
-            'url'  => 'articles',
-            'active' => ['articles']
-        ],
-        [
-            'text'       => 'Create',
-            'icon_color' => 'green',
-            'url'  => 'articles/create',
-        ],
         'USERS',
         [
-            'text' => 'Users',
+            'text' => 'All users',
             'url'  => 'users',
             'icon' => 'users',
+            'active' => ['users']
+        ],
+        [
+            'text' => 'Create user',
+            'url'  => 'users/create',
+            'icon' => 'user',
+            'active' => ['users/create']
         ],
     ],
 
