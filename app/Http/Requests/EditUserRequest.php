@@ -25,10 +25,10 @@ class EditUserRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'old_password' => 'required',
-            'password' => 'required|min:6',
-            'password_confirm'   =>  'required|same:password'
+            'email' => 'required|email',
+            'old_password' => '',
+            'password' => '',
+            'password_confirm'   =>  '|same:password'
         ];
     }
 }

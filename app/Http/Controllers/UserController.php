@@ -9,10 +9,18 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\EditUserRequest;
 use Illuminate\Support\Facades\Hash;
 
-use Service\UserService;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
+
+    protected $service;
+
+    public function __construct(UserService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,28 +37,7 @@ class UserController extends Controller
      */
     public function getUsers()
     {
-        return Datatables::of(User::query())
-        ->addColumn('intro', function(User $user) {
-                return '
-                <a href="'.route('users.show', $user->id).'" 
-                   class="btn btn-info">
-                   <span class="glyphicon glyphicon glyphicon-info-sign"></span> подробнее
-                </a>
-                <a href="'.route('users.edit', $user->id).'" 
-                   type="button" 
-                   class="btn btn-primary">
-                   <span class="glyphicon glyphicon-edit"></span> редактировать
-                </a>
-                <button 
-                   type="button" 
-                   class="delete-user btn btn-danger" 
-                   value="'.$user->id.'" onclick="destroyElement(this);">
-                   <span class="glyphicon glyphicon-trash"></span> удалить
-                </button>
-                ';
-            })
-        ->rawColumns(['intro', 'action'])
-        ->make(true);
+        return $this->service->getUsersList();
     }
 
     /**
@@ -108,18 +95,9 @@ class UserController extends Controller
      */
     public function update(EditUserRequest $request, User $user)
     { 
-        if(Hash::check($request->old_password, $user->password))
-        {
-            unset($request['old_password']);
-            unset($request['password_confirm']);
-            $user->update($request->all());
-            return redirect("users");
-        }
-        else
-        {           
-            $error = array('current-password' => 'Please enter correct current password');
-            return response()->json(array('error' => $error), 400);   
-        }
+        if($this->service->userUpdate($request, $user))  
+            return redirect("users"); 
+        else $this->service->userUpadateFall();
     }
 
     /**
@@ -131,6 +109,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return "was deleted";
+        return "delete";
     }
 }
