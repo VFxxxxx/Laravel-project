@@ -13,23 +13,20 @@
 					<a class="pull-right">{{ $user->email }}</a>
 				</li>
 				<li class="list-group-item">
-					<b>Created at</b>
+					<b>Создан</b>
 					<a class="pull-right">{{ $user->created_at }}</a>
 				</li>
 				<li class="list-group-item">
-					<b>Updated at</b>
+					<b>Обновлен</b>
 					<a class="pull-right">{{ $user->updated_at }}</a>
 				</li>
 			</ul>
-			<a href="/users/{{ $user->id }}/edit" class="btn btn-primary btn-block">
-				<b>Edit</b>
-			</a>
-			<a href="/users/{{ $user->id }}/delete" type="button" class="btn btn-danger btn-block">
-				<b>Delete</b>
+			<a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-block">
+				<b>Редактировать</b>
 			</a>
 		</div>
 		<div class="box-footer text-center">
-			<a href="{{ url('/users') }}" class="pad_a">Back</a>
+			<a href="{{ url('/users') }}" class="pad_a">Назад</a>
 		</div>
 	</div>
 </div>

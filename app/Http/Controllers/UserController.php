@@ -9,6 +9,8 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\EditUserRequest;
 use Illuminate\Support\Facades\Hash;
 
+use Service\UserService;
+
 class UserController extends Controller
 {
     /**
@@ -28,25 +30,22 @@ class UserController extends Controller
     public function getUsers()
     {
         return Datatables::of(User::query())
-        ->editColumn('updated_at', function(User $user) {
-                return $user->updated_at->diffForHumans();
-            })
         ->addColumn('intro', function(User $user) {
                 return '
-                <a href="users/'.$user->id.'" 
+                <a href="'.route('users.show', $user->id).'" 
                    class="btn btn-info">
-                   info
+                   <span class="glyphicon glyphicon glyphicon-info-sign"></span> подробнее
                 </a>
-                <a href="users/'.$user->id.'/edit" 
+                <a href="'.route('users.edit', $user->id).'" 
                    type="button" 
                    class="btn btn-primary">
-                   edit
+                   <span class="glyphicon glyphicon-edit"></span> редактировать
                 </a>
                 <button 
                    type="button" 
                    class="delete-user btn btn-danger" 
                    value="'.$user->id.'" onclick="destroyElement(this);">
-                   delete
+                   <span class="glyphicon glyphicon-trash"></span> удалить
                 </button>
                 ';
             })
@@ -132,6 +131,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return "was deleted...";
+        return "was deleted";
     }
 }

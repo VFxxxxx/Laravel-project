@@ -108,14 +108,14 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'ОСНОВНАЯ НАВИГАЦИЯ',
         [
             'text' => 'Blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Home',
+            'text'        => 'Главная',
             'url'         => '/home',
             'icon'        => 'file',
             'label'       => 3,
@@ -132,15 +132,15 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],*/
-        'USERS',
+        'ПОЛЬЗОВАТЕЛИ',
         [
-            'text' => 'All users',
+            'text' => 'Все пользователи',
             'url'  => 'users',
             'icon' => 'users',
             'active' => ['users']
         ],
         [
-            'text' => 'Create user',
+            'text' => 'Создать пользователя',
             'url'  => 'users/create',
             'icon' => 'user',
             'active' => ['users/create']

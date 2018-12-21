@@ -1,6 +1,5 @@
 .mb {
-	margin-bottom: 20px;
-	margin-top: -20px;
+    margin: 20px 10px;
 }
 
 .pm {
@@ -10,4 +9,8 @@
 
 .pad_a {
 	padding: 10px 100px;
+}
+
+.tac {
+	text-align: center;
 }
