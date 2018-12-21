@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'CRM',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Project</b>LTE',
+    'logo' => '<b>Project</b>CRM',
 
-    'logo_mini' => '<b>P</b>LT',
+    'logo_mini' => '<b>C</b>RM',
 
     /*
     |--------------------------------------------------------------------------
@@ -116,12 +116,12 @@ return [
         ],
         [
             'text'        => 'Home',
-            'url'         => 'admin/home',
+            'url'         => '/home',
             'icon'        => 'file',
-            'label'       => 5,
+            'label'       => 3,
             'label_color' => 'success',
         ],
-        'ACCOUNT SETTINGS',
+/*        'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
             'url'  => 'admin/settings',
@@ -131,7 +131,7 @@ return [
             'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
-        ],
+        ],*/
         'USERS',
         [
             'text' => 'All users',

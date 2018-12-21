@@ -21,4 +21,4 @@ Route::resource('users', 'UserController');
 //get data for ajax
 Route::get('getusers', 'UserController@getUsers')->name('getusers');
 
-Route::get('admin/home','PageController@index');
+Route::get('home','PageController@index');

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\EditUserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,8 +33,21 @@ class UserController extends Controller
             })
         ->addColumn('intro', function(User $user) {
                 return '
-                <a href="users/'.$user->id.'/edit" type="button" class="btn btn-primary">edit</a>
-                <a href="users/'.$user->id.'/delete" type="button" class="btn btn-danger">delete</a>
+                <a href="users/'.$user->id.'" 
+                   class="btn btn-info">
+                   info
+                </a>
+                <a href="users/'.$user->id.'/edit" 
+                   type="button" 
+                   class="btn btn-primary">
+                   edit
+                </a>
+                <button 
+                   type="button" 
+                   class="delete-user btn btn-danger" 
+                   value="'.$user->id.'" onclick="destroyElement(this);">
+                   delete
+                </button>
                 ';
             })
         ->rawColumns(['intro', 'action'])
@@ -54,9 +70,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        // CreateUserRequest - класс для валлидации данных
+        
+        User::create($request->all());
+        return redirect('users');
     }
 
     /**
@@ -67,7 +86,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.user_detail', compact('user'));
     }
 
     /**
@@ -78,7 +97,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.user_edit', compact('user'));
     }
 
     /**
@@ -88,9 +107,20 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        //
+    public function update(EditUserRequest $request, User $user)
+    { 
+        if(Hash::check($request->old_password, $user->password))
+        {
+            unset($request['old_password']);
+            unset($request['password_confirm']);
+            $user->update($request->all());
+            return redirect("users");
+        }
+        else
+        {           
+            $error = array('current-password' => 'Please enter correct current password');
+            return response()->json(array('error' => $error), 400);   
+        }
     }
 
     /**
@@ -101,6 +131,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return "was deleted...";
     }
 }
