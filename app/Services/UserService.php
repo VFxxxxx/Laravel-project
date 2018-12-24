@@ -12,6 +12,9 @@ use App\Http\Requests\EditUserRequest;
  */
 class UserService
 {
+  /**
+   * Метод возвращает список пользователей для Datatables
+   */
 	public function getUsersList()
 	{
 		return Datatables::of(User::query())
@@ -38,12 +41,18 @@ class UserService
         ->make(true);
 	}
 
+  /**
+   * возвращает ошибку как json объект , есл пользователя не удалось обновить
+   */
   public function userUpadateFall()
   {
     $error = array('current-password' => 'Please enter correct current password');
     return response()->json(array('error' => $error), 400);   
   }
 
+  /**
+   * метод обновления пользователя
+   */
   public function userUpdate($request, $user)
   {
     //если хотят изменить пароль
