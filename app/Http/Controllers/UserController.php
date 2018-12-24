@@ -110,7 +110,7 @@ class UserController extends Controller
     {
         $user->delete();
         if(request()->ajax())
-            return "delete";
+            return "deleted";
         return redirect("users");
     }
 }
