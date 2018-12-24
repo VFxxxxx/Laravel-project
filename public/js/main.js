@@ -19,7 +19,6 @@ function destroyElement(selector){
         type: 'delete',
         dataType: "JSON",
         data: {
-            "id": id 
         },
         //чтобы не сихнронно работал с сервером , а по порядку выполнял действия
         sync: false,

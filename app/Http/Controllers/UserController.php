@@ -109,6 +109,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return "delete";
+        if(request()->ajax())
+            return "delete";
+        return redirect("users");
     }
 }

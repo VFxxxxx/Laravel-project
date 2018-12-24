@@ -24,6 +24,11 @@
 			<a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-block">
 				<b>Редактировать</b>
 			</a>
+			<form method="post" action="{{ action('UserController@destroy', $user) }}" accept-charset="UTF-8" class="btn-block">
+				<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+				 <input type="hidden" name="_method" value="delete" />
+			    <input class="btn btn-danger btn-block" type="submit" value="Удалить" /> 
+			</form>
 		</div>
 		<div class="box-footer text-center">
 			<a href="{{ url('/users') }}" class="pad_a">Назад</a>
