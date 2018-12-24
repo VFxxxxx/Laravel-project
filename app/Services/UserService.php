@@ -21,12 +21,12 @@ class UserService
         ->addColumn('intro', function(User $user) {
                 return '
                 <a href="'.route('users.show', $user->id).'" 
-                   class="btn btn-info">
+                   class="btn btn-primary">
                    <span class="glyphicon glyphicon glyphicon-info-sign"></span> подробнее
                 </a>
                 <a href="'.route('users.edit', $user->id).'" 
                    type="button" 
-                   class="btn btn-primary">
+                   class="btn btn-warning">
                    <span class="glyphicon glyphicon-edit"></span> редактировать
                 </a>
                 <button 

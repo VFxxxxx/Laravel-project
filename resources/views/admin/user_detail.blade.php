@@ -21,7 +21,7 @@
 					<a class="pull-right">{{ $user->updated_at }}</a>
 				</li>
 			</ul>
-			<a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-block">
+			<a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-block">
 				<b>Редактировать</b>
 			</a>
 			<form method="post" action="{{ action('UserController@destroy', $user) }}" accept-charset="UTF-8" class="btn-block">
