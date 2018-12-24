@@ -15,8 +15,10 @@ Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('articles', 'ArticleController');
+//users resource
+Route::resource('users', 'UserController');
 
+//get data for ajax
+Route::get('getusers', 'UserController@getUsers')->name('getusers');
 
-Route::resource('users', 'UsersController');
+Route::get('home','PageController@index');

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'CRM',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Project</b>LTE',
+    'logo' => '<b>Project</b>CRM',
 
-    'logo_mini' => '<b>P</b>LT',
+    'logo_mini' => '<b>C</b>RM',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,20 +108,20 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'ОСНОВНАЯ НАВИГАЦИЯ',
         [
             'text' => 'Blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Главная',
+            'url'         => '/home',
             'icon'        => 'file',
-            'label'       => 4,
+            'label'       => 3,
             'label_color' => 'success',
         ],
-        'ACCOUNT SETTINGS',
+/*        'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
             'url'  => 'admin/settings',
@@ -131,24 +131,19 @@ return [
             'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
-        ],
-        'ARTICLES',
+        ],*/
+        'ПОЛЬЗОВАТЕЛИ',
         [
-            'text'       => 'All',
-            'icon_color' => 'aqua',
-            'url'  => 'articles',
-            'active' => ['articles']
-        ],
-        [
-            'text'       => 'Create',
-            'icon_color' => 'green',
-            'url'  => 'articles/create',
-        ],
-        'USERS',
-        [
-            'text' => 'Users',
+            'text' => 'Все пользователи',
             'url'  => 'users',
             'icon' => 'users',
+            'active' => ['users']
+        ],
+        [
+            'text' => 'Создать пользователя',
+            'url'  => 'users/create',
+            'icon' => 'user',
+            'active' => ['users/create']
         ],
     ],
 
