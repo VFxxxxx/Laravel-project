@@ -36,3 +36,5 @@ $('#myTable_wrapper .dataTables_filter').addClass('col-sm-6');
 $('#myTable_wrapper .dataTables_filter input').addClass('form-control input-sm');
 $('#myTable_wrapper .sorting').addClass('tac');
 $('.table').addClass('tac');
+
+$('div.alert').delay(3000).slideUp();
