@@ -110,11 +110,6 @@ return [
     'menu' => [
         'ОСНОВНАЯ НАВИГАЦИЯ',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text'        => 'Главная',
             'url'         => '/home',
             'icon'        => 'file',
@@ -137,13 +132,15 @@ return [
             'text' => 'Все пользователи',
             'url'  => 'users',
             'icon' => 'users',
-            'active' => ['users']
+            'active' => ['users'],
+            'permission' => 'users-list'
         ],
         [
             'text' => 'Создать пользователя',
             'url'  => 'users/create',
             'icon' => 'user',
-            'active' => ['users/create']
+            'active' => ['users/create'],
+            'permission' => 'create-user'
         ],
     ],
 
@@ -164,7 +161,8 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        //JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        App\MyMenuFilter::class,
     ],
 
     /*
