@@ -116,17 +116,6 @@ return [
             'label'       => 3,
             'label_color' => 'success',
         ],
-/*        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],*/
         'ПОЛЬЗОВАТЕЛИ',
         [
             'text' => 'Все пользователи',
@@ -141,6 +130,12 @@ return [
             'icon' => 'user',
             'active' => ['users/create'],
             'permission' => 'create-user'
+        ],
+        [
+            'text' => 'Календарь событий',
+            'url'  => 'calendar',
+            'icon' => 'calendar',
+            'active' => ['calendar']
         ],
     ],
 

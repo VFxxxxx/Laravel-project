@@ -19,6 +19,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('users', 'UserController')->middleware('role:admin');
 
 //get data for ajax
-Route::get('getusers', 'UserController@getUsers')->name('getusers');
+Route::get('getusers', 'UserController@getUsers')->name('getusers')->middleware('role:admin');
 
 Route::get('home','PageController@index')->middleware('auth');
+
+Route::resource('calendar', 'CalendarController')->middleware('auth');
