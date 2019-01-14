@@ -24,3 +24,5 @@ Route::get('getusers', 'UserController@getUsers')->name('getusers')->middleware(
 Route::get('home','PageController@index')->middleware('auth');
 
 Route::resource('calendar', 'CalendarController')->middleware('auth');
+
+Route::get('getevents', 'UserController@getEvents')->name('getevents')->middleware('auth');

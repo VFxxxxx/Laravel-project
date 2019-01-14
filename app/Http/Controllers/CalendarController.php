@@ -35,7 +35,8 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Calendar::create($request->all());
+        return $request;
     }
 
     /**
@@ -79,6 +80,11 @@ class CalendarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Calendar $calendar)
+    {
+        //
+    }
+
+    public function getEvents(Request $request)
     {
         //
     }
