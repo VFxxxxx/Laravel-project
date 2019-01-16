@@ -84,8 +84,9 @@ class CalendarController extends Controller
         //
     }
 
-    public function getEvents(Request $request)
+    public function getevents(Request $request)
     {
-        //
+        $events = Calendar::all();
+        return json_encode($events);
     }
 }

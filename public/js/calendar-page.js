@@ -1,46 +1,3 @@
-// page is now ready, initialize the calendar...
-var format = "MM/dd/yyyy HH:mm";
-$('#calendar').fullCalendar({
-	monthNames: ['Январь','Февраль','Март','Апрель','Май','οюнь','οюль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-    monthNamesShort: ['Янв.','Фев.','Март','Апр.','Май','Июнь','Июль','Авг.','Сент.','Окт.','Ноя.','Дек.'],
-    dayNames: ["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"],
-    dayNamesShort: ["ВС","ПН","ВТ","СР","ЧТ","ПТ","СБ"],
-    buttonText: {
-        today: "Сегодня",
-        month: "Месяц",
-        week: "Неделя",
-        day: "День"
-    },
-	dayClick: function(date, allDay, jsEvent, view) {
-	    var newDate = date.format();
-	    $("#event_start").val(newDate);
-	    $("#event_end").val(newDate);
-	    $('.add-event-button').click();
-	},
-	header: {
-	left: 'prev,next today',
-	center: 'title',
-	right: 'month,agendaWeek,agendaDay'
-	},
-
-	eventClick: function(event, element) {
-		event.title = "CLICKED!";
-		$('#calendar').fullCalendar('updateEvent', event);
-	},
-/*
-	eventSources: [{
-	    url: '/getevents',
-	    type: 'POST',
-	    data: {
-	        op: 'source'
-	    },
-	    error: function() {
-	        alert('Ошибка соединения с источником данных!');
-	    }
-	}]*/
-});
-
-
 $.datepicker.regional['ru'] = {
 	closeText: 'Закрыть',
 	prevText: '<Пред',
@@ -97,9 +54,9 @@ $("#form-create-event").submit(function( event ) {
 	    type: 'POST',
 	    dataType: "JSON",
 	    data: {
+	    	title: event_type.val(),
 	    	start: event_start.val()+":00",
-	    	end: event_end.val()+":00",
-	    	type: event_type.val()
+	    	end: event_end.val()+":00"
 	    },
 	    sync: false,
 	    success: function(html) {
